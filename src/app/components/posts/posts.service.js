@@ -11,6 +11,7 @@ function postsService() {
         setPosts,
         toggleLikePost,
         findPost,
+        findUserPosts,
         mapUsersToPosts
     };
 
@@ -37,6 +38,10 @@ function postsService() {
 
     function findPost(postId) {
         return _.find($posts, {id: _.parseInt(postId)});
+    }
+
+    function findUserPosts(userId) {
+        return _.filter($posts, {userId: _.parseInt(userId)});
     }
 
     function mapUsersToPosts(users) {

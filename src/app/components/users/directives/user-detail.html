@@ -69,6 +69,11 @@
 
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12" ng-repeat="userPost in ctrl.userDetails.posts">
+                            <a ui-sref="app.posts.details({postId: userPost.id})">{{userPost.title}}</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

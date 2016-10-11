@@ -11,6 +11,7 @@ function usersService() {
         setUsers,
         getUsers,
         findUser,
+        updateUser,
         mapPostsToUsers
     };
 
@@ -30,7 +31,17 @@ function usersService() {
         return _.find($users, {id: _.parseInt(userId)});
     }
 
+    function updateUser(userId, updatedUser) {
+        let user = findUser(userId);
+        if (!user) {
+            return;
+        }
+        user = updatedUser;
+        return user;
+    }
+
     function mapPostsToUsers(posts) {
+        posts = _.clone(posts);
         $users = getUsers().map((user) => {
             user.posts = _.find(posts, {userId: user.userId});
             return user;

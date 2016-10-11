@@ -55,7 +55,7 @@ function dataservice($http, BASE_URL) {
     }
 
     function saveUser(user) {
-        return $http.post([BASE_URL, 'users'].join('/'), {user})
+        return $http.post([BASE_URL, 'users'].join('/'), user)
             .then(_saveUserComplete)
             .catch(_saveUserFailed);
 

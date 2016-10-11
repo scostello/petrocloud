@@ -7,13 +7,13 @@ export default function UserDetailDirective() {
             userDetails: '='
         },
         template: require('./user-detail.html'),
-        controller: ['dataservice', UserDetailController],
+        controller: ['dataservice', 'postsService', 'usersService', UserDetailController],
         controllerAs: 'ctrl',
         replace: true
     };
 }
 
-function UserDetailController(dataservice) {
+function UserDetailController(dataservice, postsService, usersService) {
     let vm = this;
 
     vm.toggleEditable = function () {
@@ -22,9 +22,17 @@ function UserDetailController(dataservice) {
 
     vm.saveUser = (user) => {
         vm.isSaving = true;
-        dataservice.saveUser(user)
+        dataservice.saveUser({
+                id: user.id,
+                name: user.name,
+                address: user.address,
+                phone: user.phones,
+                website: user.website,
+                company: user.company
+            })
             .then((response) => {
                 vm.isEditing = false;
+                usersService.updateUser(user.id, user);
             })
             .catch((error) => {
 
@@ -34,5 +42,6 @@ function UserDetailController(dataservice) {
             })
     };
 
+    vm.userDetails.posts = postsService.findUserPosts(vm.userDetails.id);
     vm.userDetails.addressDisplay = [vm.userDetails.address.street, vm.userDetails.address.suite, vm.userDetails.address.street + ',', vm.userDetails.address.zipcode].join(' ');
 }
