@@ -3,75 +3,88 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-body text-left">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <form name="ctrl.userForm" class="form-horizontal">
+                        <form name="ctrl.userForm" class="form-horizontal">
+                            <div class="col-md-10">
                                 <button class="btn btn-primary pull-right push-down-sm" ng-click="ctrl.toggleEditable()">
                                     <span ng-if="ctrl.isEditing">Disable editing</span>
                                     <span ng-if="!ctrl.isEditing">Edit</span>
                                 </button>
-                                <div class="clearfix"></div>
-                                <div class="form-group">
-                                    <label for="name" class="control-label col-xs-2">Name</label>
-                                    <div class="col-xs-10">
-                                        <input type="text" class="form-control" id="name" placeholder="{{ctrl.userDetails.name}}"
-                                               ng-model="ctrl.userDetails.name"
-                                               ng-disabled="!ctrl.isEditing"
-                                               ng-dirty="ctrl.changeHappened()">
-                                    </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group">
+                                <label for="name" class="control-label col-md-2">Name</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" id="name" placeholder="{{ctrl.userDetails.name}}"
+                                           ng-model="ctrl.userDetails.name"
+                                           ng-disabled="!ctrl.isEditing"
+                                           ng-dirty="ctrl.changeHappened()">
                                 </div>
-                                <div class="form-group">
-                                    <label for="userName" class="control-label col-xs-2">Username</label>
-                                    <div class="col-xs-10">
-                                        <input type="text" class="form-control" id="userName" placeholder="{{ctrl.userDetails.username}}" ng-model="ctrl.userDetails.username" ng-disabled="!ctrl.isEditing">
-                                    </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="userName" class="control-label col-md-2">Username</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" id="userName" placeholder="{{ctrl.userDetails.username}}" ng-model="ctrl.userDetails.username" ng-disabled="!ctrl.isEditing">
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-xs-2">Email</label>
-                                    <div class="col-xs-10">
-                                        <h5>{{ctrl.userDetails.email}}</h5>
-                                    </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Email</label>
+                                <div class="col-md-8">
+                                    <h5>{{ctrl.userDetails.email}}</h5>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-xs-2">Phone</label>
-                                    <div class="col-xs-10">
-                                        <h5>{{ctrl.userDetails.phone}}</h5>
-                                    </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Phone</label>
+                                <div class="col-md-8">
+                                    <h5>{{ctrl.userDetails.phone}}</h5>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-xs-2">Website</label>
-                                    <div class="col-xs-10">
-                                        <h5>{{ctrl.userDetails.website}}</h5>
-                                    </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Website</label>
+                                <div class="col-md-8">
+                                    <h5>{{ctrl.userDetails.website}}</h5>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-xs-2">Address</label>
-                                    <div class="col-xs-10">
-                                        <h5>{{ctrl.userDetails.addressDisplay}}</h5>
-                                    </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Address</label>
+                                <div class="col-md-8">
+                                    <h5>{{ctrl.userDetails.addressDisplay}}</h5>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-xs-2">Company</label>
-                                    <div class="col-xs-10">
-                                        <dl>
-                                            <dd>{{ctrl.userDetails.company.name}}</dd>
-                                            <dd>{{ctrl.userDetails.company.catchPhrase}}</dd>
-                                            <dd>{{ctrl.userDetails.company.bs}}</dd>
-                                        </dl>
-                                    </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Company</label>
+                                <div class="col-md-8">
+                                    <dl>
+                                        <dd>{{ctrl.userDetails.company.name}}</dd>
+                                        <dd>{{ctrl.userDetails.company.catchPhrase}}</dd>
+                                        <dd>{{ctrl.userDetails.company.bs}}</dd>
+                                    </dl>
                                 </div>
-
+                                <div class="col-md-2"></div>
+                            </div>
+                            <div class="col-md-10">
                                 <button class="btn btn-success pull-right" ng-disabled="ctrl.isSaving" ng-click="ctrl.saveUser(ctrl.userDetails)">
                                     <span class="spinner pull-left" ng-if="ctrl.isSaving"></span>
                                     <span ng-if="!ctrl.isSaving">Save</span>
                                 </button>
-                            </form>
+                            </div>
 
-                        </div>
-                    </div>
+                        </form>
+
                     <div class="row">
+                        <div class="col-md-12">
+                            <h3>Submitted Posts:</h3>
+                        </div>
                         <div class="col-md-12" ng-repeat="userPost in ctrl.userDetails.posts">
-                            <a ui-sref="app.posts.details({postId: userPost.id})">{{userPost.title}}</a>
+                            <article class="user-posts">
+                                <span>{{$index + 1}} </span>
+                                <a class="" ui-sref="app.posts.details({postId: userPost.id})">{{userPost.title}}</a>
+                            </article>
                         </div>
                     </div>
                 </div>

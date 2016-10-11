@@ -1,0 +1,40 @@
+.post-items {
+    margin: 0 5%;
+
+    .post-item {
+        margin-bottom: 50px;
+
+        a {
+            color: @brand-primary;
+            text-decoration: none;
+            &:hover {
+                color: lighten(@brand-primary, 20%);
+            }
+        }
+    }
+}
+
+.post-item-header {
+    text-align: center;
+
+    h3 {
+        font-size: 30px;
+
+        @media (max-width: @screen-tablet) {
+            font-size: 20px;
+        }
+    }
+}
+
+#comments-list {
+    .list-style-none;
+
+    .comment-header {
+
+    }
+
+    .comment-content {
+        position: relative;
+        margin-bottom: 24px;
+    }
+}

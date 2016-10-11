@@ -7,13 +7,14 @@ export default function PostDetailDirective() {
             postDetails: '='
         },
         template: require('./post-item-detail.html'),
-        controller: [PostDetailController],
+        controller: ['commentsService', PostDetailController],
         controllerAs: 'ctrl',
         replace: true
     };
 }
 
-function PostDetailController() {
+function PostDetailController(commentsService) {
     let vm = this;
-    console.log(vm.details);
+
+    vm.postDetails.comments = commentsService.findPostComments(vm.postDetails.id);
 }

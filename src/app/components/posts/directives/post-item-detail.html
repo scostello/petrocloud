@@ -1,8 +1,22 @@
-<div class="post-wrapper">
-
-    <h3>{{ctrl.postDetails.title}}</h3>
-    <a ui-sref="app.userdetail({userId: ctrl.postDetails.user.id})"><h4>{{ctrl.postDetails.user.username}}</h4></a>
-    <span>{{ctrl.postDetails.isLiked}}</span>
-    <p>{{ctrl.postDetails.body}}</p>
-
+<div class="container-fluid">
+    <div class="post-details">
+        <header class="post-item-header">
+            <h3 class="panel-title">{{ctrl.postDetails.title}} <span class="glyphicon glyphicon-heart-empty" ng-if="ctrl.postDetails.isLiked"></span></h3>
+            by <a ui-sref="app.userdetail({userId: ctrl.postDetails.user.id})"><span>{{ctrl.postDetails.user.username}}</span></a>
+        </header>
+        <span ng-if="ctrl.postDetails.isLiked" class="text-success">You like this post</span>
+        <p>{{ctrl.postDetails.body}}</p>
+        <div class="row">
+            <ul id="comments-list">
+                <li class="comment" ng-repeat="comment in ctrl.postDetails.comments">
+                    <article class="comment-content">
+                        <header class="comment-header text-success">{{comment.name}} <small class="text-info">{{comment.email}}</small></header>
+                        <div class="comment-body">
+                            <p>{{comment.body}}</p>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>

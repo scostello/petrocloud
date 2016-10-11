@@ -5,8 +5,9 @@ import uiRouter from 'angular-ui-router';
 import appCore from './core/core.module';
 import appPosts from './components/posts/posts.module';
 import appUsers from './components/users/users.module';
+import appComments from './components/comments/comments.module';
 
-export default angular.module('app.config', [uiRouter, appCore, appPosts, appUsers])
+export default angular.module('app.config', [uiRouter, appCore, appPosts, appUsers, appComments])
     .config(['$locationProvider', '$stateProvider', config])
     .name;
 
@@ -27,8 +28,11 @@ function config($locationProvider, $stateProvider) {
                             return usersService.setUsers(users);
                         });
                 }],
-                comments: ['dataservice', (dataservice) => {
-                    return dataservice.getComments();
+                comments: ['dataservice', 'commentsService', (dataservice, commentsService) => {
+                    return dataservice.getComments()
+                        .then((comments) => {
+                            return commentsService.setComments(comments);
+                        });
                 }]
             }
         })

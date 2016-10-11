@@ -1,18 +1,16 @@
-<article class="row-fluid" data-id="{{ctrl.postData.id}}">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <a ui-sref="app.posts.details({postId: ctrl.postData.id})">
-                <h3 class="panel-title">{{ctrl.postData.title}} <span class="glyphicon glyphicon-heart-empty" ng-if="ctrl.postData.isLiked"></span></h3>
-            </a>
-            <a ui-sref="app.userdetail({userId: ctrl.postData.user.dd})"><span>{{ctrl.postData.user.username}}</span></a>
-        </div>
-        <div class="panel-body">
-            <p>{{ctrl.postData.body}}</p>
-            <button type="button" class="btn btn-info" ng-click="ctrl.toggleLikePost(ctrl.postData.id)">
-                <span class="glyphicon" ng-class="{'glyphicon-thumbs-up': !ctrl.postData.isLiked, 'glyphicon-thumbs-down': ctrl.postData.isLiked}"></span>
-                <span ng-show="!ctrl.postData.isLiked"> Like me</span>
-                <span ng-show="ctrl.postData.isLiked"> Unlike me</span>
-            </button>
-        </div>
-    </div>
-</article>
+<section class="row-fluid post-item" data-id="{{ctrl.postData.id}}">
+    <header class="post-item-header">
+        <a ui-sref="app.posts.details({postId: ctrl.postData.id})">
+            <h3 class="panel-title">{{ctrl.postData.title}} <span class="glyphicon glyphicon-heart-empty" ng-if="ctrl.postData.isLiked"></span></h3>
+        </a>
+        by <a ui-sref="app.userdetail({userId: ctrl.postData.user.id})"><span>{{ctrl.postData.user.username}}</span></a>
+    </header>
+    <article class="post-body">
+        <p>{{ctrl.postData.body}}</p>
+        <button type="button" class="btn btn-info" ng-click="ctrl.toggleLikePost(ctrl.postData.id)">
+            <span class="glyphicon" ng-class="{'glyphicon-thumbs-up': !ctrl.postData.isLiked, 'glyphicon-thumbs-down': ctrl.postData.isLiked}"></span>
+            <span ng-show="!ctrl.postData.isLiked"> Like me</span>
+            <span ng-show="ctrl.postData.isLiked"> Unlike me</span>
+        </button>
+    </article>
+</section>
