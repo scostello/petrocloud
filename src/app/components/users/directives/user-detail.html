@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-4"></div>
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-body text-left">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <h2>{{ctrl.userDetails.name}}</h2>
+                                <p>{{ctrl.userDetails.username}}</p>
+
+                                <form name="ctrl.userForm" class="form-horizontal">
+                                    <button class="btn btn-sm btn-primary pull-right" ng-click="ctrl.toggleEditable()">
+                                        <span ng-if="ctrl.isEditing">Disable editing</span>
+                                        <span ng-if="!ctrl.isEditing">Edit</span>
+                                    </button>
+                                    <div class="clearfix"></div>
+                                    <div class="form-group">
+                                        <label for="name" class="control-label col-xs-2">Name</label>
+                                        <div class="col-xs-10">
+                                            <input type="text" class="form-control" id="name" placeholder="{{ctrl.userDetails.name}}"
+                                                   ng-model="ctrl.userDetails.name"
+                                                   ng-disabled="!ctrl.isEditing"
+                                                   ng-dirty="ctrl.changeHappened()">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="userName" class="control-label col-xs-2">Username</label>
+                                        <div class="col-xs-10">
+                                            <input type="text" class="form-control" id="userName" placeholder="{{ctrl.userDetails.username}}" ng-model="ctrl.userDetails.username" ng-disabled="!ctrl.isEditing">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-success" ng-disabled="!ctrl.userForm.$dirty">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
