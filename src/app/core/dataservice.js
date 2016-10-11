@@ -8,6 +8,7 @@ function dataservice($http, BASE_URL) {
         getPostItems,
         getPostItem,
         getUsers,
+        saveUser,
         getComments
     };
 
@@ -21,7 +22,7 @@ function dataservice($http, BASE_URL) {
         }
 
         function _getPostItemsFailed(error) {
-
+            return error;
         }
     }
 
@@ -35,35 +36,49 @@ function dataservice($http, BASE_URL) {
         }
 
         function _getPostItemFailed(error) {
-
+            return error;
         }
     }
 
     function getUsers() {
         return $http.get([BASE_URL, 'users'].join('/'))
             .then(_getUsersComplete)
-            .catch(_getUsersFailed());
+            .catch(_getUsersFailed);
 
         function _getUsersComplete(response) {
             return response.data;
         }
 
         function _getUsersFailed(error) {
+            return error;
+        }
+    }
 
+    function saveUser(user) {
+        return $http.post([BASE_URL, 'users'].join('/'), {user})
+            .then(_saveUserComplete)
+            .catch(_saveUserFailed);
+
+        function _saveUserComplete(response) {
+            return response.data;
+        }
+
+        function _saveUserFailed(error) {
+            return error;
         }
     }
 
     function getComments() {
         return $http.get([BASE_URL, 'comments'].join('/'))
             .then(_getCommentsComplete)
-            .catch(_getCommentsFailed());
+            .catch(_getCommentsFailed);
 
         function _getCommentsComplete(response) {
             return response.data;
         }
 
         function _getCommentsFailed(error) {
-
+            return error;
         }
     }
 }

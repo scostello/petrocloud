@@ -1,47 +1,76 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <div class="col-md-4"></div>
-            <div class="col-md-8">
-                <div class="panel panel-default">
-                    <div class="panel-body text-left">
-                        <div class="row">
-                            <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body text-left">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form name="ctrl.userForm" class="form-horizontal">
+                                <button class="btn btn-primary pull-right push-down-sm" ng-click="ctrl.toggleEditable()">
+                                    <span ng-if="ctrl.isEditing">Disable editing</span>
+                                    <span ng-if="!ctrl.isEditing">Edit</span>
+                                </button>
+                                <div class="clearfix"></div>
+                                <div class="form-group">
+                                    <label for="name" class="control-label col-xs-2">Name</label>
+                                    <div class="col-xs-10">
+                                        <input type="text" class="form-control" id="name" placeholder="{{ctrl.userDetails.name}}"
+                                               ng-model="ctrl.userDetails.name"
+                                               ng-disabled="!ctrl.isEditing"
+                                               ng-dirty="ctrl.changeHappened()">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="userName" class="control-label col-xs-2">Username</label>
+                                    <div class="col-xs-10">
+                                        <input type="text" class="form-control" id="userName" placeholder="{{ctrl.userDetails.username}}" ng-model="ctrl.userDetails.username" ng-disabled="!ctrl.isEditing">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-xs-2">Email</label>
+                                    <div class="col-xs-10">
+                                        <h5>{{ctrl.userDetails.email}}</h5>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-xs-2">Phone</label>
+                                    <div class="col-xs-10">
+                                        <h5>{{ctrl.userDetails.phone}}</h5>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-xs-2">Website</label>
+                                    <div class="col-xs-10">
+                                        <h5>{{ctrl.userDetails.website}}</h5>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-xs-2">Address</label>
+                                    <div class="col-xs-10">
+                                        <h5>{{ctrl.userDetails.addressDisplay}}</h5>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-xs-2">Company</label>
+                                    <div class="col-xs-10">
+                                        <dl>
+                                            <dd>{{ctrl.userDetails.company.name}}</dd>
+                                            <dd>{{ctrl.userDetails.company.catchPhrase}}</dd>
+                                            <dd>{{ctrl.userDetails.company.bs}}</dd>
+                                        </dl>
+                                    </div>
+                                </div>
 
-                                <h2>{{ctrl.userDetails.name}}</h2>
-                                <p>{{ctrl.userDetails.username}}</p>
+                                <button class="btn btn-success pull-right" ng-disabled="ctrl.isSaving" ng-click="ctrl.saveUser(ctrl.userDetails)">
+                                    <span class="spinner pull-left" ng-if="ctrl.isSaving"></span>
+                                    <span ng-if="!ctrl.isSaving">Save</span>
+                                </button>
+                            </form>
 
-                                <form name="ctrl.userForm" class="form-horizontal">
-                                    <button class="btn btn-sm btn-primary pull-right" ng-click="ctrl.toggleEditable()">
-                                        <span ng-if="ctrl.isEditing">Disable editing</span>
-                                        <span ng-if="!ctrl.isEditing">Edit</span>
-                                    </button>
-                                    <div class="clearfix"></div>
-                                    <div class="form-group">
-                                        <label for="name" class="control-label col-xs-2">Name</label>
-                                        <div class="col-xs-10">
-                                            <input type="text" class="form-control" id="name" placeholder="{{ctrl.userDetails.name}}"
-                                                   ng-model="ctrl.userDetails.name"
-                                                   ng-disabled="!ctrl.isEditing"
-                                                   ng-dirty="ctrl.changeHappened()">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="userName" class="control-label col-xs-2">Username</label>
-                                        <div class="col-xs-10">
-                                            <input type="text" class="form-control" id="userName" placeholder="{{ctrl.userDetails.username}}" ng-model="ctrl.userDetails.username" ng-disabled="!ctrl.isEditing">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-success" ng-disabled="!ctrl.userForm.$dirty">Save</button>
-                                    </div>
-                                </form>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

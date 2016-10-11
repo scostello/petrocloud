@@ -7,26 +7,32 @@ export default function UserDetailDirective() {
             userDetails: '='
         },
         template: require('./user-detail.html'),
-        controller: ['$scope', UserDetailController],
+        controller: ['dataservice', UserDetailController],
         controllerAs: 'ctrl',
         replace: true
     };
 }
 
-function UserDetailController($scope) {
+function UserDetailController(dataservice) {
     let vm = this;
-
-    $scope.$watch(function () {
-        return vm.userForm.$dirty;
-    }, function (oldValue, newValue) {
-        vm.canSave = newValue;
-    });
 
     vm.toggleEditable = function () {
         vm.isEditing = !vm.isEditing;
     };
 
-    vm.changeHappened = function () {
-        console.log('Changing');
+    vm.saveUser = (user) => {
+        vm.isSaving = true;
+        dataservice.saveUser(user)
+            .then((response) => {
+                vm.isEditing = false;
+            })
+            .catch((error) => {
+
+            })
+            .finally(() => {
+                vm.isSaving = false;
+            })
     };
+
+    vm.userDetails.addressDisplay = [vm.userDetails.address.street, vm.userDetails.address.suite, vm.userDetails.address.street + ',', vm.userDetails.address.zipcode].join(' ');
 }
