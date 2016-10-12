@@ -18,6 +18,10 @@
     "url": "https://github.com/scostello/petrocloud-sample/issues"
   },
   "homepage": "https://github.com/scostello/petrocloud-sample#readme",
+  "engines" : {
+    "node" : ">=6.0.0",
+    "npm": "~3.8.6"
+  },
   "dependencies": {
     "angular": "^1.4.12",
     "angular-ui-router": "^0.3.1",
