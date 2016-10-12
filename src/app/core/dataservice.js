@@ -6,13 +6,15 @@ function dataservice($http, BASE_URL) {
 
     return {
         getPostItems,
-        getPostItem,
         getUsers,
         saveUser,
         getComments
     };
 
-
+    /**
+     * Attempts to retrieve a lists of posts via XHR
+     * @returns {*}
+     */
     function getPostItems() {
         return $http.get([BASE_URL, 'posts'].join('/'))
             .then(_getPostItemsComplete)
@@ -27,20 +29,10 @@ function dataservice($http, BASE_URL) {
         }
     }
 
-    function getPostItem(postId) {
-        return $http.get([BASE_URL, 'posts', postId].join('/'))
-            .then(_getPostItemComplete)
-            .catch(_getPostItemFailed);
-
-        function _getPostItemComplete(response) {
-            return response.data;
-        }
-
-        function _getPostItemFailed(error) {
-            return error;
-        }
-    }
-
+    /**
+     * Attempts to retrieve a lists of users via XHR
+     * @returns {*}
+     */
     function getUsers() {
         return $http.get([BASE_URL, 'users'].join('/'))
             .then(_getUsersComplete)
@@ -55,6 +47,11 @@ function dataservice($http, BASE_URL) {
         }
     }
 
+    /**
+     * Posts a user's information to the API via XHR
+     * @param user
+     * @returns {*}
+     */
     function saveUser(user) {
         return $http.post([BASE_URL, 'users'].join('/'), user)
             .then(_saveUserComplete)
@@ -69,6 +66,10 @@ function dataservice($http, BASE_URL) {
         }
     }
 
+    /**
+     * Attempts to retrieve a lists of comments via XHR
+     * @returns {*}
+     */
     function getComments() {
         return $http.get([BASE_URL, 'comments'].join('/'))
             .then(_getCommentsComplete)

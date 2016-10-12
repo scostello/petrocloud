@@ -12,6 +12,11 @@ function commentsService() {
         findPostComments
     };
 
+    /**
+     * Adds comments into memory for sharing across application
+     * @param comments
+     * @returns {Array}
+     */
     function setComments(comments) {
         if (comments) {
             $comments = comments;
@@ -20,6 +25,11 @@ function commentsService() {
         return $comments;
     }
 
+    /**
+     * Finds comments associated with the post's id
+     * @param postId
+     * @returns {Array}
+     */
     function findPostComments(postId) {
         return _.filter($comments, {postId: _.parseInt(postId)});
     }

@@ -18,10 +18,17 @@ function userDetailDirective() {
 function userDetailController(dataservice, postsService, usersService) {
     let vm = this;
 
+    /**
+     * Toggles editing mode on or off
+     */
     vm.toggleEditable = function () {
         vm.isEditing = !vm.isEditing;
     };
 
+    /**
+     * Posts an updated user to the API
+     * @param user
+     */
     vm.saveUser = (user) => {
         vm.isSaving = true;
         vm.errorMessage = '';
@@ -45,6 +52,9 @@ function userDetailController(dataservice, postsService, usersService) {
             })
     };
 
+    // Retrieving the current user's posts
     vm.userDetails.posts = postsService.findUserPosts(vm.userDetails.id);
+
+    // Prettifying the user's address
     vm.userDetails.addressDisplay = [vm.userDetails.address.street, vm.userDetails.address.suite, vm.userDetails.address.street + ',', vm.userDetails.address.zipcode].join(' ');
 }

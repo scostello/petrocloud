@@ -12,6 +12,10 @@ export default angular.module('app.config', [uiRouter, appCore, appPosts, appUse
     .name;
 
 function config($locationProvider, $urlRouterProvider, $stateProvider) {
+
+    /**
+     * Utilizing ui.router the application state's can be modularized using directives
+     */
     $stateProvider.state('app', {
             url: '',
             template: require('./layout/shell.html'),

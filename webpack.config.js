@@ -16,8 +16,6 @@ var ENV = process.env.npm_lifecycle_event;
 var isTest = ENV === 'test' || ENV === 'test-watch';
 var isProd = ENV === 'prod';
 
-
-console.log(isTest);
 module.exports = function makeWebpackConfig () {
 
     var config = {};
@@ -105,9 +103,6 @@ module.exports = function makeWebpackConfig () {
                     from: 'src/assets/**/*'
                 }
             ]),
-            // Reference: https://github.com/webpack/extract-text-webpack-plugin
-            // Extract css files
-            // Disabled when in test mode or not in build mode
             new ExtractTextPlugin('[name].[hash].css', {disable: !isProd})
         )
     }
@@ -115,20 +110,12 @@ module.exports = function makeWebpackConfig () {
     // Add build specific plugins
     if (isProd) {
         config.plugins.push(
-            // Reference: http://webpack.github.io/docs/list-of-plugins.html#noerrorsplugin
-            // Only emit files when there are no errors
             new webpack.NoErrorsPlugin(),
 
-            // Reference: http://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
-            // Dedupe modules in the output
             new webpack.optimize.DedupePlugin(),
 
-            // Reference: http://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
-            // Minify all javascript, switch loaders to minimizing mode
             new webpack.optimize.UglifyJsPlugin(),
 
-            // Copy assets from the public folder
-            // Reference: https://github.com/kevlened/copy-webpack-plugin
             new CopyWebpackPlugin([
                 {
                     from: 'src/assets/**/*'
