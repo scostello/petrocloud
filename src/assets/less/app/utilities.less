@@ -54,6 +54,27 @@
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+    &:hover {
+        text-decoration: none;
+    }
+
+    &.brand-accent {
+        color: @brand-accent;
+        &:hover {
+            color: lighten(@brand-accent, 20%);
+        }
+    }
+
+    &.link-dark {
+        color: #000;
+        &:hover {
+            color: lighten(@brand-primary, 20%);
+        }
+    }
+}
+
 h1.section-heading {
     color: #616161;
     font-weight: 300;

@@ -12,6 +12,7 @@ function dataservice($http, BASE_URL) {
         getComments
     };
 
+
     function getPostItems() {
         return $http.get([BASE_URL, 'posts'].join('/'))
             .then(_getPostItemsComplete)

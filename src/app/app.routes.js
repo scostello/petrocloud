@@ -8,10 +8,10 @@ import appUsers from './components/users/users.module';
 import appComments from './components/comments/comments.module';
 
 export default angular.module('app.config', [uiRouter, appCore, appPosts, appUsers, appComments])
-    .config(['$locationProvider', '$stateProvider', config])
+    .config(['$locationProvider', '$urlRouterProvider', '$stateProvider', config])
     .name;
 
-function config($locationProvider, $stateProvider) {
+function config($locationProvider, $urlRouterProvider, $stateProvider) {
     $stateProvider.state('app', {
             url: '',
             template: require('./layout/shell.html'),
@@ -88,5 +88,9 @@ function config($locationProvider, $stateProvider) {
             }
         });
 
-    $locationProvider.html5Mode(true);
+    $urlRouterProvider.otherwise('/');
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+    });
 }

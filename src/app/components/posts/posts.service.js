@@ -5,7 +5,7 @@ import _ from 'lodash';
 export default [postsService];
 
 function postsService() {
-    let $posts = {};
+    let $posts = [];
 
     return {
         setPosts,

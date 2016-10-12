@@ -5,7 +5,7 @@ import _ from 'lodash';
 export default [usersService];
 
 function usersService() {
-    let $users = {};
+    let $users = [];
 
     return {
         setUsers,

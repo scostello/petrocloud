@@ -5,7 +5,7 @@ import _ from 'lodash';
 export default [commentsService];
 
 function commentsService() {
-    let $comments = {};
+    let $comments = [];
 
     return {
         setComments,
@@ -16,6 +16,8 @@ function commentsService() {
         if (comments) {
             $comments = comments;
         }
+
+        return $comments;
     }
 
     function findPostComments(postId) {

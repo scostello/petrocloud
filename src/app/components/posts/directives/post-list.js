@@ -1,15 +1,17 @@
 'use strict';
 
-export default function PostListDirective() {
+export default [postListDirective];
+
+function postListDirective() {
     return {
         restrict: 'AE',
         bindToController: {
             postItems: '='
         },
         template: require('./post-list.html'),
-        controller: [PostListController],
+        controller: [postListController],
         controllerAs: 'ctrl'
     };
 }
 
-function PostListController() {}
+function postListController() {}

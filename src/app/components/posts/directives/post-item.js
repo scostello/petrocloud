@@ -1,6 +1,8 @@
 'use strict';
 
-export default function PostItemDirective() {
+export default [postItemDirective];
+
+function postItemDirective() {
     return {
         restrict: 'AE',
         bindToController: {
@@ -8,12 +10,12 @@ export default function PostItemDirective() {
         },
         template: require('./post-item.html'),
         replace: true,
-        controller: ['postsService', PostItemController],
+        controller: ['postsService', postItemController],
         controllerAs: 'ctrl'
     };
 }
 
-function PostItemController(postsService) {
+function postItemController(postsService) {
     let vm = this;
 
     vm.toggleLikePost = postsService.toggleLikePost;

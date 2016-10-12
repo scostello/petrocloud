@@ -1,19 +1,21 @@
 'use strict';
 
-export default function UserDetailDirective() {
+export default [userDetailDirective];
+
+function userDetailDirective() {
     return {
         restrict: 'AE',
         bindToController: {
             userDetails: '='
         },
         template: require('./user-detail.html'),
-        controller: ['dataservice', 'postsService', 'usersService', UserDetailController],
+        controller: ['dataservice', 'postsService', 'usersService', userDetailController],
         controllerAs: 'ctrl',
         replace: true
     };
 }
 
-function UserDetailController(dataservice, postsService, usersService) {
+function userDetailController(dataservice, postsService, usersService) {
     let vm = this;
 
     vm.toggleEditable = function () {
@@ -22,6 +24,7 @@ function UserDetailController(dataservice, postsService, usersService) {
 
     vm.saveUser = (user) => {
         vm.isSaving = true;
+        vm.errorMessage = '';
         dataservice.saveUser({
                 id: user.id,
                 name: user.name,
@@ -30,12 +33,12 @@ function UserDetailController(dataservice, postsService, usersService) {
                 website: user.website,
                 company: user.company
             })
-            .then((response) => {
+            .then((updatedUser) => {
                 vm.isEditing = false;
-                usersService.updateUser(user.id, user);
+                usersService.updateUser(updatedUser.id, updatedUser);
             })
             .catch((error) => {
-
+                vm.errorMessage = 'There was an issue saving the user!';
             })
             .finally(() => {
                 vm.isSaving = false;
