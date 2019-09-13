@@ -1,5 +1,7 @@
 # petrocloud-sample
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/scostello/petrocloud.svg)](https://greenkeeper.io/)
+
 This is an Angular Sample Application
 
 ## Instructions for Installation and Running
